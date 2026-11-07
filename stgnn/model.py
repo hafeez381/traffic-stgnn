@@ -26,27 +26,18 @@ class TemporalEncoder(nn.Module):
 
 
 class STModel(nn.Module):
-    """Graph layer H = ReLU(A_hat Z W_g + Z W_s), then a linear head.
-
-    The self term Z W_s keeps each sensor's own features at full weight. Without it, row
-    normalisation leaves a sensor a median weight of 0.14 on itself in the SD road graph (and
-    about 1/716 in a dense learned graph), so its forecast is pulled toward its neighbours' level.
-    graph=None gives the temporal-only model: the same layers with no neighbour term, i.e.
-    H = ReLU(Z W_g + Z W_s), so every model has the same encoder, weights and head.
-    """
+    """graph=None gives the temporal-only model: same encoder, same W_g, same head, no neighbours."""
 
     def __init__(self, hidden, graph=None, out_len=4):
         super().__init__()
         self.encoder = TemporalEncoder(hidden)
         self.w_g = nn.Linear(hidden, hidden)
-        self.w_s = nn.Linear(hidden, hidden, bias=False)
         self.graph = graph
         self.head = nn.Linear(hidden, out_len)
 
     def forward(self, x):  # x (B, 8, N) -> (B, 4, N)
-        z = self.encoder(x)
-        neighbours = self.w_g(z)
+        z = self.w_g(self.encoder(x))
         if self.graph is not None:
-            # A_hat Z W_g: the product runs over the node axis, separately for each batch item
-            neighbours = torch.einsum("ij,bjd->bid", self.graph(), neighbours)
-        return self.head(torch.relu(neighbours + self.w_s(z))).permute(0, 2, 1)
+            # H = ReLU(A_hat Z W_g): the product runs over the node axis, separately for each batch item
+            z = torch.einsum("ij,bjd->bid", self.graph(), z)
+        return self.head(torch.relu(z)).permute(0, 2, 1)
