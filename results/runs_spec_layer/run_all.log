@@ -1,0 +1,10 @@
+metrics.json: OK
+train_log.jsonl: OK
+best.pt: OK
+test_preds.npz: OK
+done temporal
+metrics.json: OK
+train_log.jsonl: OK
+best.pt: OK
+test_preds.npz: OK
+done fixed
