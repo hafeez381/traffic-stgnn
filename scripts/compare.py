@@ -2,8 +2,8 @@
 
 Every number comes from results/runs/<model>/metrics.json. The script refuses to build the table
 if the four runs were not evaluated on the same test windows with the same settings.
-It also computes a last-value baseline (repeat the latest reading for all four horizons) as a
-floor every trained model must beat.
+It also computes a last-value baseline (repeat the latest reading for all four horizons) and
+flags any trained model that does not beat it.
 Writes results/comparison.{json,md,tex} and results/figures/q6a_forecasts.pdf.
 Usage: python -m scripts.compare [--data DIR]
 """
@@ -38,7 +38,7 @@ def last_value(flow, mask):
         err_abs += np.abs(d).sum()
         err_sq += (d ** 2).sum()
         count += ok.sum()
-    return err_abs / count, math.sqrt(err_sq / count)
+    return float(err_abs / count), float(math.sqrt(err_sq / count))
 
 
 def main():
@@ -58,9 +58,11 @@ def main():
     flow, ts, ids = load(f"{args.data}/sd_2020_2021.npz")
     masks = split_masks(ts)
     floor = {s: last_value(flow, masks[s]) for s in ("val", "test")}
+    # A trained model that loses to repeating the last reading is flagged in the output, not hidden.
     for m, r in runs.items():
         if r["val_mae"] >= floor["val"][0]:
-            raise SystemExit(f"{m} does not beat the last-value baseline on validation")
+            print(f"WARNING: {m} does not beat the last-value baseline on validation "
+                  f"({r['val_mae']:.2f} vs {floor['val'][0]:.2f})")
 
     table = []
     for key, model, adjacency in ROWS:
@@ -68,7 +70,8 @@ def main():
         table.append({"model": model, "adjacency": adjacency, "val_mae": r["val_mae"], "val_rmse": r["val_rmse"],
                       "test_mae": r["test_mae"], "test_rmse": r["test_rmse"], "fit_seconds": r["fit_seconds"],
                       "seconds_per_epoch": r["seconds_per_epoch"], "epochs_run": r["epochs_run"],
-                      "best_epoch": r["best_epoch"], "parameters": r["parameters"], "alpha": r.get("alpha")})
+                      "best_epoch": r["best_epoch"], "parameters": r["parameters"], "alpha": r.get("alpha"),
+                      "beats_last_value_val": bool(r["val_mae"] < floor["val"][0])})
     out = {"rows": table, "last_value": {"val_mae": floor["val"][0], "val_rmse": floor["val"][1],
                                          "test_mae": floor["test"][0], "test_rmse": floor["test"][1]},
            "device": runs["temporal"]["device"]}
