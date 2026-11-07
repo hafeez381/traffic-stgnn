@@ -1,0 +1,12 @@
+metrics.json: OK
+train_log.jsonl: OK
+best.pt: OK
+test_preds.npz: OK
+adjacency.npy: OK
+done adaptive
+metrics.json: OK
+train_log.jsonl: OK
+best.pt: OK
+test_preds.npz: OK
+adjacency.npy: OK
+done hybrid

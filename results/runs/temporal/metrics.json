@@ -1,0 +1,54 @@
+{
+ "model": "temporal",
+ "mode": "full",
+ "normalisation": null,
+ "parameters": 6500,
+ "epochs_run": 13,
+ "best_epoch": 8,
+ "fit_seconds": 1210.8455582080642,
+ "train_seconds": 1118.602923791972,
+ "seconds_per_epoch": 93.12374259285235,
+ "val_mae": 58.1150975059214,
+ "val_rmse": 95.58184924463947,
+ "test_mae": 65.68154216882499,
+ "test_rmse": 104.32558498266266,
+ "test_windows": 26389,
+ "test_ends_sha256": "9fc2a9737d0166c2e6bd34afdabe50ab55a94ae3700767c73cf7d1580d8c42b2",
+ "config": {
+  "num_nodes": 716,
+  "train": [
+   "2020-01-01",
+   "2021-01-01"
+  ],
+  "val": [
+   "2021-01-01",
+   "2021-04-01"
+  ],
+  "test": [
+   "2021-04-01",
+   "2022-01-01"
+  ],
+  "split_steps": {
+   "train": 35136,
+   "val": 8640,
+   "test": 26400
+  },
+  "in_len": 8,
+  "out_len": 4,
+  "hidden": 32,
+  "embed_dim": 10,
+  "lr": 0.001,
+  "batch_size": 64,
+  "max_epochs": 50,
+  "patience": 5,
+  "seed": 2026,
+  "eval_batch_size": 256
+ },
+ "config_sha256": "50cd7d7b4df8c3509aa117dd8537bf54294a0767c22537f5f152a63dd4bdce8a",
+ "scaler": {
+  "mean": 607.1699829101562,
+  "std": 483.35162353515625
+ },
+ "device": "mps",
+ "torch": "2.15.0"
+}

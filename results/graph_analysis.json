@@ -1,0 +1,59 @@
+{
+ "adaptive": {
+  "row_sum_max_error": 5.882780129695675e-07,
+  "max_row_entry_median": 0.27659742534160614,
+  "uniform_level": 0.0013966480446927375,
+  "self_weight_median": 3.4787936442626233e-07,
+  "top10_overlap_with_road": 0.0659217877094972,
+  "top1_overlap_with_road": 0.2164804469273743,
+  "strongest_1pct_overlap_with_road": 0.078125,
+  "chance_overlap": 0.033830136344102826,
+  "shuffled_control_overlap": 0.03449720670391061,
+  "top10_distance_km_median": 19.48867642518029,
+  "road_edge_distance_km_median": 2.3710611863843543,
+  "random_pair_distance_km_median": 22.924901288676594,
+  "top10_share_within_4km": 0.08603351955307263,
+  "top10_long_range_share": 0.9139664804469274,
+  "top10_corr_median": 0.8934146165847778,
+  "top10_long_range_corr_median": 0.8884280323982239,
+  "road_edge_corr_median": 0.8725504279136658,
+  "random_pair_corr_median": 0.8609718084335327,
+  "hub_in_degree_top5": [
+   63,
+   57,
+   52,
+   50,
+   48
+  ],
+  "distinct_targets_in_top10": 622
+ },
+ "hybrid": {
+  "row_sum_max_error": 3.6670796177418197e-07,
+  "max_row_entry_median": 0.24828792363405228,
+  "uniform_level": 0.0013966480446927375,
+  "self_weight_median": 1.0885187293752097e-06,
+  "top10_overlap_with_road": 0.051256983240223465,
+  "top1_overlap_with_road": 0.12849162011173185,
+  "strongest_1pct_overlap_with_road": 0.056640625,
+  "chance_overlap": 0.033830136344102826,
+  "shuffled_control_overlap": 0.032681564245810056,
+  "top10_distance_km_median": 20.709179970497907,
+  "road_edge_distance_km_median": 2.3710611863843543,
+  "random_pair_distance_km_median": 22.953871796686286,
+  "top10_share_within_4km": 0.06801675977653632,
+  "top10_long_range_share": 0.9319832402234637,
+  "top10_corr_median": 0.8849827647209167,
+  "top10_long_range_corr_median": 0.879682719707489,
+  "road_edge_corr_median": 0.8725504279136658,
+  "random_pair_corr_median": 0.8632078766822815,
+  "hub_in_degree_top5": [
+   66,
+   61,
+   57,
+   55,
+   54
+  ],
+  "distinct_targets_in_top10": 611
+ },
+ "hybrid_alpha": 0.2203848659992218
+}

@@ -1,0 +1,71 @@
+{
+ "rows": [
+  {
+   "model": "Temporal-only",
+   "adjacency": "None",
+   "val_mae": 58.1150975059214,
+   "val_rmse": 95.58184924463947,
+   "test_mae": 65.68154216882499,
+   "test_rmse": 104.32558498266266,
+   "fit_seconds": 1210.8455582080642,
+   "seconds_per_epoch": 93.12374259285235,
+   "epochs_run": 13,
+   "best_epoch": 8,
+   "parameters": 6500,
+   "alpha": null,
+   "beats_last_value_val": true
+  },
+  {
+   "model": "STGNN",
+   "adjacency": "Fixed",
+   "val_mae": 124.92790623244758,
+   "val_rmse": 199.63971112798177,
+   "test_mae": 140.95975382769154,
+   "test_rmse": 218.0444280771253,
+   "fit_seconds": 4582.919426208013,
+   "seconds_per_epoch": 91.63821602496552,
+   "epochs_run": 50,
+   "best_epoch": 49,
+   "parameters": 6500,
+   "alpha": null,
+   "beats_last_value_val": false
+  },
+  {
+   "model": "STGNN",
+   "adjacency": "Adaptive",
+   "val_mae": 65.5482471235792,
+   "val_rmse": 110.95333562110137,
+   "test_mae": 82.69925883804386,
+   "test_rmse": 130.71925475260483,
+   "fit_seconds": 4883.132397957961,
+   "seconds_per_epoch": 97.64387910246151,
+   "epochs_run": 50,
+   "best_epoch": 50,
+   "parameters": 20820,
+   "alpha": null,
+   "beats_last_value_val": true
+  },
+  {
+   "model": "STGNN",
+   "adjacency": "Hybrid",
+   "val_mae": 61.41708778109506,
+   "val_rmse": 104.62175853087162,
+   "test_mae": 77.25136578965109,
+   "test_rmse": 122.24155731137175,
+   "fit_seconds": 4671.780527041061,
+   "seconds_per_epoch": 93.39116985749686,
+   "epochs_run": 50,
+   "best_epoch": 50,
+   "parameters": 20821,
+   "alpha": 0.2203848659992218,
+   "beats_last_value_val": true
+  }
+ ],
+ "last_value": {
+  "val_mae": 81.16003468977479,
+  "val_rmse": 124.90732686662768,
+  "test_mae": 87.07929517589645,
+  "test_rmse": 132.75555060459314
+ },
+ "device": "mps"
+}
