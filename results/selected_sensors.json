@@ -1,0 +1,34 @@
+{
+ "indices": [
+  99,
+  590,
+  306
+ ],
+ "ids": [
+  "1118365",
+  "1116105",
+  "1113985"
+ ],
+ "labels": [
+  "10th percentile flow",
+  "median flow",
+  "90th percentile flow"
+ ],
+ "mean_2020_flow": [
+  275.1945495605469,
+  613.4649658203125,
+  903.7119140625
+ ],
+ "freeway": [
+  "I5-S",
+  "SR163-S",
+  "I15-N"
+ ],
+ "neighbourhood_sensor": {
+  "index": 33,
+  "id": "1126411",
+  "out_degree": 20,
+  "median_out_degree": 20.0
+ },
+ "rule": "nearest to 10/50/90th percentile of mean 2020 flow among sensors with <=20% missing in train and test"
+}

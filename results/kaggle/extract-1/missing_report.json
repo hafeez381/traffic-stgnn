@@ -1,0 +1,91 @@
+{
+ "5min_all": {
+  "label": "5-minute, 2020-2021",
+  "steps": 210528,
+  "missing_share": 0.05066183423046582,
+  "sensors_any_missing": 716,
+  "sensors_over_20pct": 44,
+  "sensors_all_missing": 19,
+  "per_sensor_share_quantiles": {
+   "0.5": 0.00013299893600851194,
+   "0.9": 0.00014724882200942393,
+   "0.99": 1.0,
+   "1.0": 1.0
+  },
+  "longest_gap_steps": 210528,
+  "first": "2020-01-01 00:00:00",
+  "last": "2021-12-31 23:55:00"
+ },
+ "15min_all": {
+  "label": "15-minute, 2020-2021",
+  "steps": 70176,
+  "missing_share": 0.05075604402148023,
+  "sensors_any_missing": 716,
+  "sensors_over_20pct": 44,
+  "sensors_all_missing": 19,
+  "per_sensor_share_quantiles": {
+   "0.5": 0.0001709986320109439,
+   "0.9": 0.0002137482900136799,
+   "0.99": 1.0,
+   "1.0": 1.0
+  },
+  "longest_gap_steps": 70176,
+  "first": "2020-01-01 00:00:00",
+  "last": "2021-12-31 23:45:00"
+ },
+ "15min_train": {
+  "label": "15-minute, train",
+  "steps": 35136,
+  "missing_share": 0.04112730198888787,
+  "sensors_any_missing": 716,
+  "sensors_over_20pct": 45,
+  "sensors_all_missing": 19,
+  "per_sensor_share_quantiles": {
+   "0.5": 0.00019922586520947178,
+   "0.9": 0.00025614754098360657,
+   "0.99": 1.0,
+   "1.0": 1.0
+  },
+  "longest_gap_steps": 35136,
+  "first": "2020-01-01 00:00:00",
+  "last": "2020-12-31 23:45:00"
+ },
+ "15min_val": {
+  "label": "15-minute, val",
+  "steps": 8640,
+  "missing_share": 0.06087284036830126,
+  "sensors_any_missing": 716,
+  "sensors_over_20pct": 44,
+  "sensors_all_missing": 43,
+  "per_sensor_share_quantiles": {
+   "0.5": 0.000462962962962963,
+   "0.9": 0.000462962962962963,
+   "0.99": 1.0,
+   "1.0": 1.0
+  },
+  "longest_gap_steps": 8640,
+  "first": "2021-01-01 00:00:00",
+  "last": "2021-03-31 23:45:00"
+ },
+ "15min_test": {
+  "label": "15-minute, test",
+  "steps": 26400,
+  "missing_share": 0.060260072794988996,
+  "sensors_any_missing": 694,
+  "sensors_over_20pct": 43,
+  "sensors_all_missing": 43,
+  "per_sensor_share_quantiles": {
+   "0.5": 3.787878787878788e-05,
+   "0.9": 7.575757575757576e-05,
+   "0.99": 1.0,
+   "1.0": 1.0
+  },
+  "longest_gap_steps": 26400,
+  "first": "2021-04-01 00:00:00",
+  "last": "2021-12-31 23:45:00"
+ },
+ "scale_check": {
+  "median_5min_count_weekday_17h_feb2020": 380.0,
+  "median_15min_sum_weekday_17h_feb2020": 1172.0
+ }
+}

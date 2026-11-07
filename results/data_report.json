@@ -1,0 +1,170 @@
+{
+ "flow_shape": [
+  70176,
+  716
+ ],
+ "missing": {
+  "5min_all": {
+   "label": "5-minute, 2020-2021",
+   "steps": 210528,
+   "missing_share": 0.05066183423046582,
+   "sensors_any_missing": 716,
+   "sensors_over_20pct": 44,
+   "sensors_all_missing": 19,
+   "per_sensor_share_quantiles": {
+    "0.5": 0.00013299893600851194,
+    "0.9": 0.00014724882200942393,
+    "0.99": 1.0,
+    "1.0": 1.0
+   },
+   "longest_gap_steps": 210528,
+   "first": "2020-01-01 00:00:00",
+   "last": "2021-12-31 23:55:00"
+  },
+  "15min_all": {
+   "label": "15-minute, 2020-2021",
+   "steps": 70176,
+   "missing_share": 0.05075604402148023,
+   "sensors_any_missing": 716,
+   "sensors_over_20pct": 44,
+   "sensors_all_missing": 19,
+   "per_sensor_share_quantiles": {
+    "0.5": 0.0001709986320109439,
+    "0.9": 0.0002137482900136799,
+    "0.99": 1.0,
+    "1.0": 1.0
+   },
+   "longest_gap_steps": 70176,
+   "first": "2020-01-01 00:00:00",
+   "last": "2021-12-31 23:45:00"
+  },
+  "15min_train": {
+   "label": "15-minute, train",
+   "steps": 35136,
+   "missing_share": 0.04112730198888787,
+   "sensors_any_missing": 716,
+   "sensors_over_20pct": 45,
+   "sensors_all_missing": 19,
+   "per_sensor_share_quantiles": {
+    "0.5": 0.00019922586520947178,
+    "0.9": 0.00025614754098360657,
+    "0.99": 1.0,
+    "1.0": 1.0
+   },
+   "longest_gap_steps": 35136,
+   "first": "2020-01-01 00:00:00",
+   "last": "2020-12-31 23:45:00"
+  },
+  "15min_val": {
+   "label": "15-minute, val",
+   "steps": 8640,
+   "missing_share": 0.06087284036830126,
+   "sensors_any_missing": 716,
+   "sensors_over_20pct": 44,
+   "sensors_all_missing": 43,
+   "per_sensor_share_quantiles": {
+    "0.5": 0.000462962962962963,
+    "0.9": 0.000462962962962963,
+    "0.99": 1.0,
+    "1.0": 1.0
+   },
+   "longest_gap_steps": 8640,
+   "first": "2021-01-01 00:00:00",
+   "last": "2021-03-31 23:45:00"
+  },
+  "15min_test": {
+   "label": "15-minute, test",
+   "steps": 26400,
+   "missing_share": 0.060260072794988996,
+   "sensors_any_missing": 694,
+   "sensors_over_20pct": 43,
+   "sensors_all_missing": 43,
+   "per_sensor_share_quantiles": {
+    "0.5": 3.787878787878788e-05,
+    "0.9": 7.575757575757576e-05,
+    "0.99": 1.0,
+    "1.0": 1.0
+   },
+   "longest_gap_steps": 26400,
+   "first": "2021-04-01 00:00:00",
+   "last": "2021-12-31 23:45:00"
+  },
+  "scale_check": {
+   "median_5min_count_weekday_17h_feb2020": 380.0,
+   "median_15min_sum_weekday_17h_feb2020": 1172.0
+  }
+ },
+ "week_plot_missing_points": 0,
+ "graph": {
+  "nodes": 716,
+  "nonzero_entries_with_diagonal": 18035,
+  "nonzero_edges_without_diagonal": 17319,
+  "diagonal_values": [
+   1.0
+  ],
+  "symmetric_exact": false,
+  "symmetric_1e-6": false,
+  "pattern_asymmetric_pairs": 3711,
+  "weight_asymmetric_pairs_over_1e-6": 10511,
+  "max_abs_weight_difference": 0.9999998807907104,
+  "weight_min_nonzero": 0.01000183541327715,
+  "weight_max": 0.9999998807907104,
+  "out_degree": {
+   "mean": 24.18854748603352,
+   "median": 20.0,
+   "min": 0,
+   "max": 70,
+   "isolated": 8
+  },
+  "in_degree": {
+   "mean": 24.18854748603352,
+   "median": 19.0
+  }
+ },
+ "neighbourhood": {
+  "sensor_index": 33,
+  "sensor_id": 1126411,
+  "freeway": "I5-N",
+  "one_hop": [
+   34,
+   35,
+   36,
+   37,
+   125,
+   126,
+   127,
+   128,
+   129,
+   130,
+   131,
+   181,
+   184,
+   185,
+   186,
+   187,
+   188,
+   221,
+   222,
+   223
+  ],
+  "one_hop_size": 20,
+  "two_hop_size": 73,
+  "two_hop_only_size": 53,
+  "one_hop_freeways": [
+   "I5-N",
+   "I5-S",
+   "I8-E",
+   "I8-W"
+  ],
+  "oversmoothing_std_after_k_layers": {
+   "0": 485.3565795299385,
+   "1": 334.97559486706257,
+   "2": 298.3725035448842,
+   "4": 258.78122341518264,
+   "8": 215.3867555735868,
+   "16": 173.0509196039893,
+   "32": 139.23130996231927,
+   "64": 118.77908076559387
+  }
+ }
+}
