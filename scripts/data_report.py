@@ -76,7 +76,7 @@ def graph_report(adj):
         "in_degree": {"mean": float(in_deg.mean()), "median": float(np.median(in_deg))},
     }
 
-    fig, axes = plt.subplots(1, 2, figsize=(style.WIDTH, 2.6))
+    fig, axes = plt.subplots(1, 2, figsize=(style.WIDTH - 0.3, 2.6))
     im = axes[0].imshow(np.where(adj > 0, adj, np.nan), norm=LogNorm(vmin=0.01, vmax=1), cmap="viridis",
                         interpolation="nearest")
     style.tag(axes[0], "a")
@@ -108,7 +108,7 @@ def neighbourhood(edges, centre, meta, flow, ts_all, adj):
            "one_hop": sorted(one), "one_hop_size": len(one), "two_hop_size": len(two),
            "two_hop_only_size": len(two - one), "one_hop_freeways": sorted(set(meta.Fwy[list(one)]))}
 
-    fig, ax = plt.subplots(figsize=(style.WIDTH / 2, style.WIDTH / 2))
+    fig, ax = plt.subplots(figsize=(style.WIDTH / 2 - 0.25, style.WIDTH / 2 - 0.25))
     ax.scatter(meta.Lng, meta.Lat, s=3, c="0.8", label="all SD sensors")
     ax.scatter(meta.Lng[list(two - one)], meta.Lat[list(two - one)], s=12, c="tab:orange", label="two-hop only")
     ax.scatter(meta.Lng[list(one)], meta.Lat[list(one)], s=12, c="tab:blue", label="one-hop")

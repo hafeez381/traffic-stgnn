@@ -98,7 +98,7 @@ def analyse(learned, road, dist, corr, rng):
 def figures(name, learned, road, dist, meta, pairs):
     rows, cols, rand_r, rand_c, road_r, road_c = pairs
     style.apply()
-    fig, axes = plt.subplots(1, 2, figsize=(style.WIDTH, 2.6))
+    fig, axes = plt.subplots(1, 2, figsize=(style.WIDTH - 0.3, 2.6))
     im = axes[0].imshow(learned, norm=LogNorm(vmin=max(learned.min(), 1e-6), vmax=learned.max()),
                         cmap="viridis", interpolation="nearest")
     style.tag(axes[0], "a")
