@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.DS_Store
+.pytest_cache/
+kaggle/code/code.tgz
+kaggle/code/COMMIT
+data/
+results/kaggle/*/data/
+*.npz.tmp
