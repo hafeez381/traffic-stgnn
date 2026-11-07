@@ -1,0 +1,16 @@
+{
+  "id": "abdul381/stgnn-extract",
+  "title": "stgnn-extract",
+  "code_file": "run_extract.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": "true",
+  "enable_gpu": "false",
+  "enable_tpu": "false",
+  "enable_internet": "true",
+  "machine_shape": "",
+  "dataset_sources": ["liuxu77/largest", "abdul381/stgnn-code"],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
