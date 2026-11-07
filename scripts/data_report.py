@@ -19,6 +19,7 @@ import pandas as pd
 from matplotlib.colors import LogNorm
 
 from stgnn.data import load, split_masks
+from scripts import style
 from stgnn.graph import normalize_fixed
 
 FIG = "results/figures"
@@ -28,20 +29,20 @@ def week_plot(flow, ts, sel):
     start, end = pd.Timestamp("2020-02-03").value, pd.Timestamp("2020-02-10").value
     w = (ts >= start) & (ts < end)
     t = pd.to_datetime(ts[w])
-    fig, ax = plt.subplots(figsize=(10, 3.4))
-    for i, label, fwy in zip(sel["indices"], sel["labels"], sel["freeway"]):
-        ax.plot(t, flow[w, i], lw=0.9, label=f"sensor {sel['ids'][sel['indices'].index(i)]} ({fwy}, {label})")
+    fig, ax = plt.subplots(figsize=(style.WIDTH, 2.2))
+    for i, sensor_id, fwy, label in zip(sel["indices"], sel["ids"], sel["freeway"], ("quiet", "typical", "busy")):
+        ax.plot(t, flow[w, i], lw=0.7, label=f"{sensor_id} ({fwy}, {label})")
     ax.set_ylabel("flow (vehicles / 15 min)")
-    ax.set_xlabel("Mon 3 Feb – Sun 9 Feb 2020")
+    ax.set_xlabel("Mon 3 to Sun 9 February 2020")
     ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter("%a %d"))
-    ax.legend(fontsize=8, loc="upper left")
+    ax.legend(loc="upper left", ncol=3)
     ax.grid(alpha=0.3)
     fig.savefig(f"{FIG}/q3a_week.pdf", bbox_inches="tight")
     return int(np.isnan(flow[w][:, sel["indices"]]).sum())
 
 
 def missing_plot(flow, masks):
-    fig, ax = plt.subplots(figsize=(5, 3))
+    fig, ax = plt.subplots(figsize=(style.WIDTH / 2, 2.0))
     for name in ("train", "val", "test"):
         share = np.isnan(flow[masks[name]]).mean(0)
         ax.hist(share, bins=np.linspace(0, 1, 41), histtype="step", label=name)
@@ -75,26 +76,26 @@ def graph_report(adj):
         "in_degree": {"mean": float(in_deg.mean()), "median": float(np.median(in_deg))},
     }
 
-    fig, axes = plt.subplots(1, 2, figsize=(10, 4.4))
+    fig, axes = plt.subplots(1, 2, figsize=(style.WIDTH, 2.6))
     im = axes[0].imshow(np.where(adj > 0, adj, np.nan), norm=LogNorm(vmin=0.01, vmax=1), cmap="viridis",
                         interpolation="nearest")
-    axes[0].set_title("Road-distance adjacency $A_{ij}$ (log colour, blank = 0)", fontsize=9)
+    style.tag(axes[0], "a")
     axes[0].set_xlabel("sensor $j$")
     axes[0].set_ylabel("sensor $i$")
-    fig.colorbar(im, ax=axes[0], fraction=0.046)
+    fig.colorbar(im, ax=axes, fraction=0.03, label="$A_{ij}$")
     axes[1].imshow(np.where(adj[:80, :80] > 0, adj[:80, :80], np.nan), norm=LogNorm(vmin=0.01, vmax=1),
                    cmap="viridis", interpolation="nearest")
-    axes[1].set_title("Zoom: first 80 sensors", fontsize=9)
+    style.tag(axes[1], "b")
     axes[1].set_xlabel("sensor $j$")
     fig.savefig(f"{FIG}/q3b_adjacency.pdf", bbox_inches="tight")
 
-    fig, ax = plt.subplots(figsize=(5, 3))
+    fig, ax = plt.subplots(figsize=(style.WIDTH / 2, 2.0))
     bins = np.arange(0, max(out_deg.max(), in_deg.max()) + 2) - 0.5
     ax.hist(out_deg, bins=bins, alpha=0.7, label="out-neighbours (row)")
     ax.hist(in_deg, bins=bins, histtype="step", color="k", label="in-neighbours (column)")
     ax.set_xlabel("number of neighbours (self excluded)")
     ax.set_ylabel("sensors")
-    ax.legend(fontsize=8)
+    ax.legend()
     fig.savefig(f"{FIG}/q3b_degree.pdf", bbox_inches="tight")
     return rep, edges
 
@@ -107,7 +108,7 @@ def neighbourhood(edges, centre, meta, flow, ts_all, adj):
            "one_hop": sorted(one), "one_hop_size": len(one), "two_hop_size": len(two),
            "two_hop_only_size": len(two - one), "one_hop_freeways": sorted(set(meta.Fwy[list(one)]))}
 
-    fig, ax = plt.subplots(figsize=(5, 5))
+    fig, ax = plt.subplots(figsize=(style.WIDTH / 2, style.WIDTH / 2))
     ax.scatter(meta.Lng, meta.Lat, s=3, c="0.8", label="all SD sensors")
     ax.scatter(meta.Lng[list(two - one)], meta.Lat[list(two - one)], s=12, c="tab:orange", label="two-hop only")
     ax.scatter(meta.Lng[list(one)], meta.Lat[list(one)], s=12, c="tab:blue", label="one-hop")
@@ -118,7 +119,7 @@ def neighbourhood(edges, centre, meta, flow, ts_all, adj):
     ax.set_ylim(la.min() - pad, la.max() + pad)
     ax.set_xlabel("longitude")
     ax.set_ylabel("latitude")
-    ax.legend(fontsize=8)
+    ax.legend(loc="best")
     fig.savefig(f"{FIG}/q3c_neighbourhood.pdf", bbox_inches="tight")
 
     # Oversmoothing: apply the normalised graph k times to a real snapshot and watch the spread shrink.
@@ -145,6 +146,7 @@ def main():
     sel = json.load(open("results/selected_sensors.json"))
     masks = split_masks(ts)
 
+    style.apply()
     rep = {"flow_shape": list(flow.shape), "missing": json.load(open(f"{args.data}/missing_report.json"))}
     rep["week_plot_missing_points"] = week_plot(flow, ts, sel)
     missing_plot(flow, masks)

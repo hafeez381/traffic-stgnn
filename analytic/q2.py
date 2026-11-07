@@ -16,6 +16,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 
+from scripts import style
+
 N = 40
 behind = lambda x: np.roll(x, 1)   # value at i is x[i-1]
 ahead = lambda x: np.roll(x, -1)   # value at i is x[i+1]
@@ -59,11 +61,12 @@ def part_a_rollout(a, b, out="results/figures/q2_rollout.pdf"):
               f"   {pred[t].sum():8.3f}   {true[t].max():8.3f}")
 
     vmin, vmax = min(pred.min(), true.min()), max(pred.max(), true.max())
-    fig, axes = plt.subplots(1, 2, figsize=(9, 3.6), sharey=True)
-    for ax, data, title in zip(axes, (pred, true), ("Symmetric layer, 20-step rollout", "True motion")):
+    style.apply()
+    fig, axes = plt.subplots(1, 2, figsize=(style.WIDTH, 2.3), sharey=True)
+    for ax, data, letter in zip(axes, (pred, true), "ab"):
         im = ax.imshow(data, origin="lower", aspect="auto", vmin=vmin, vmax=vmax, cmap="viridis",
                        extent=(-0.5, N - 0.5, -0.5, 20.5))
-        ax.set_title(title, fontsize=10)
+        style.tag(ax, letter)
         ax.set_xlabel("sensor index $i$")
     axes[0].set_ylabel("time step $t$")
     fig.colorbar(im, ax=axes, label="slowdown $x_i(t)$")
