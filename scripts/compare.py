@@ -79,19 +79,19 @@ def main():
 
     md = ["| Model | Adjacency | Test MAE | Test RMSE | Val MAE | Val RMSE | Training time (s) | Epochs (best) | Parameters |",
           "|---|---|---|---|---|---|---|---|---|"]
-    tex = [r"\begin{tabular}{llrrrrrrr}", r"\toprule",
-           r"Model & Adjacency & MAE & RMSE & Val MAE & Val RMSE & Training time (s) & Epochs (best) & Params \\",
+    tex = [r"\begin{tabular}{llrrrrr}", r"\toprule",
+           r"Model & Adjacency & Test MAE & Test RMSE & Val.\ MAE & Training time (min) & Epochs (best) \\",
            r"\midrule"]
     for row in table:
-        cells = [row["model"], row["adjacency"], f"{row['test_mae']:.2f}", f"{row['test_rmse']:.2f}",
-                 f"{row['val_mae']:.2f}", f"{row['val_rmse']:.2f}", f"{row['fit_seconds']:.0f}",
-                 f"{row['epochs_run']} ({row['best_epoch']})", f"{row['parameters']:,}"]
-        md.append("| " + " | ".join(cells) + " |")
-        tex.append(" & ".join(cells).replace(",", "{,}") + r" \\")
+        cells = [row["model"], row["adjacency"], f"{row['test_mae']:.1f}", f"{row['test_rmse']:.1f}",
+                 f"{row['val_mae']:.1f}", f"{row['fit_seconds'] / 60:.0f}", f"{row['epochs_run']} ({row['best_epoch']})"]
+        md.append("| " + " | ".join(cells[:5]) + f" | {row['val_rmse']:.2f} | {row['fit_seconds']:.0f} | "
+                  f"{row['epochs_run']} ({row['best_epoch']}) | {row['parameters']:,} |")
+        tex.append(" & ".join(cells) + r" \\")
     lv = out["last_value"]
     md.append(f"| Last value | None | {lv['test_mae']:.2f} | {lv['test_rmse']:.2f} | {lv['val_mae']:.2f} | {lv['val_rmse']:.2f} | – | – | 0 |")
-    tex += [r"\midrule", f"Last value & None & {lv['test_mae']:.2f} & {lv['test_rmse']:.2f} & {lv['val_mae']:.2f} & "
-            f"{lv['val_rmse']:.2f} & -- & -- & 0 \\\\", r"\bottomrule", r"\end{tabular}"]
+    tex += [r"\midrule", f"Last value & None & {lv['test_mae']:.1f} & {lv['test_rmse']:.1f} & {lv['val_mae']:.1f} & -- & -- \\\\",
+            r"\bottomrule", r"\end{tabular}"]
     open("results/comparison.md", "w").write("\n".join(md) + "\n")
     open("results/comparison.tex", "w").write("\n".join(tex) + "\n")
     print("\n".join(md))
