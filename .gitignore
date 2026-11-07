@@ -7,3 +7,6 @@ kaggle/code/COMMIT
 data/
 results/kaggle/*/data/
 *.npz.tmp
+results/kaggle/*/*.npz
+results/kaggle/*/*.npy
+results/runs/*/best.pt.tmp
